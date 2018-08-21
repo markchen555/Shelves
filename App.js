@@ -1,12 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { UtilityThemeProvider, Box, Text } from 'react-native-design-utility';
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <UtilityThemeProvider>
+        <Box f={1} center>
+          <Text>Open up App.js to start working on your app!</Text>
+        </Box>
+      </UtilityThemeProvider>
     );
   }
 }
