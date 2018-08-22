@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Box, Text } from 'react-native-design-utility';
-import { Image } from 'react-native';
 
-import { images }from '../constants/images';
+import OnboardingLogo from '../commons/OnboardingLogo';
 
 class SplashScreen extends Component {
 
@@ -18,8 +17,8 @@ class SplashScreen extends Component {
 
   render() {
     return (
-      <Box f={1} center>
-        <Image source={images.logo} />
+      <Box f={1} center bg='#61D9D4'>
+        <OnboardingLogo />
       </Box>
     );
   }

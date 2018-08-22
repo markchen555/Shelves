@@ -5,6 +5,7 @@ import { UtilityThemeProvider, Box, Text } from 'react-native-design-utility';
 import Navigation from './src/screens';
 import { images } from './src/constants/images';
 import { cacheImages } from './src/utils/cacheImages';
+import { theme } from './src/constants/theme';
 
 export default class App extends Component {
   state = {
@@ -18,7 +19,7 @@ export default class App extends Component {
   cacheAssets = async() => {
     const imagesAssets = cacheImages(Object.values(images));
     await Promise.all([...imagesAssets]);
-    this.setState({ isReady:true });
+    this.setState({ isReady: true });
   }
 
   render() {
@@ -31,7 +32,7 @@ export default class App extends Component {
       )
     }
     return (
-      <UtilityThemeProvider>
+      <UtilityThemeProvider theme={theme}>
         <Navigation />
       </UtilityThemeProvider>
     );
