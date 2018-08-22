@@ -1,24 +1,39 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { Component } from 'react';
+import { ActivityIndicator } from 'react-native';
 import { UtilityThemeProvider, Box, Text } from 'react-native-design-utility';
 
-export default class App extends React.Component {
+import Navigation from './src/screens';
+import { images } from './src/constants/images';
+import { cacheImages } from './src/utils/cacheImages';
+
+export default class App extends Component {
+  state = {
+    isReady: false,
+  };
+
+  componentDidMount() {
+    this.cacheAssets();
+  }
+
+  cacheAssets = async() => {
+    const imagesAssets = cacheImages(Object.values(images));
+    await Promise.all([...imagesAssets]);
+    this.setState({ isReady:true });
+  }
+
   render() {
+    // If not ready show spinning circle
+    if(!this.state.isReady){
+      return (
+        <Box f={1} center bg='white'>
+          <ActivityIndicator />
+        </Box>
+      )
+    }
     return (
       <UtilityThemeProvider>
-        <Box f={1} center>
-          <Text>Open up App.js to start working on your app!</Text>
-        </Box>
+        <Navigation />
       </UtilityThemeProvider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
