@@ -4,6 +4,7 @@ import { Alert, Animated } from 'react-native';
 
 import OnboardingLogo from '../commons/OnboardingLogo';
 import LoginButton from '../commons/LoginButton';
+import { FacebookApi } from "../api/facebook";
 
 
 class LoginScreen extends Component {
@@ -38,8 +39,14 @@ class LoginScreen extends Component {
     Alert.alert('Google Press')
   }
 
-  onFacebookPress = () => {
-    Alert.alert('Facebook Press')
+  onFacebookPress = async () => {
+    try {
+      const token = await FacebookApi.loginAsync();
+      console.log('token', token)
+      // Alert.alert(token)
+    } catch (err) {
+      console.log('Error', err)
+    }
   }
 
   render() {
